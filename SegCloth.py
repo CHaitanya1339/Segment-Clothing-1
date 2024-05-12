@@ -17,6 +17,9 @@ def segment_clothing(img, clothes= ["Hat", "Upper-clothes", "Skirt", "Pants", "D
         if(s['label'] in clothes):
             mask_list.append(s['mask'])
 
+    if not mask_list:  # Check if mask_list is empty
+        print("No matching clothing segments found.")
+        return None  # Or handle the error as appropriate
 
     # Paste all masks on top of eachother 
     final_mask = np.array(mask_list[0])
@@ -31,3 +34,4 @@ def segment_clothing(img, clothes= ["Hat", "Upper-clothes", "Skirt", "Pants", "D
     img.putalpha(final_mask)
 
     return img
+    # return img
